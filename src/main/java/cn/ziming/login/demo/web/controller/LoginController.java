@@ -1,5 +1,6 @@
 package cn.ziming.login.demo.web.controller;
 
+import cn.ziming.login.demo.dao.impl.UserDaoImpl;
 import cn.ziming.login.demo.entity.User;
 import cn.ziming.login.demo.service.UserService;
 import cn.ziming.login.demo.service.impl.UserServiceImpl;
@@ -49,6 +50,8 @@ public class LoginController extends HttpServlet {
         String loginPwd = request.getParameter("loginPwd");
 
         User user = userService.login(loginId, loginPwd);
+        // UserDaoImpl userdaoimpl = new UserDaoImpl();
+        // User user = userdaoimpl.login(loginId, loginPwd);
 
         // 登陆失败的处理
         if (user == null) {

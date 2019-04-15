@@ -4,5 +4,9 @@ import cn.ziming.login.demo.entity.User;
 
 public interface UserDao {
 
-    public User login(String loginId, String loginPwd);
+    public boolean createUser(User user) throws Exception;
+    public boolean delectUser(User user);
+    public User findUserByIdAndPwd(User user);
+    public boolean upDataUser(User user);
+
 }
