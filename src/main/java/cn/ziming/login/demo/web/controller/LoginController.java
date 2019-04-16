@@ -1,17 +1,18 @@
 package cn.ziming.login.demo.web.controller;
 
-import cn.ziming.login.demo.dao.impl.UserDaoImpl;
 import cn.ziming.login.demo.entity.User;
 import cn.ziming.login.demo.service.UserService;
 import cn.ziming.login.demo.service.impl.UserServiceImpl;
+import cn.ziming.login.demo.web.utils.TimeStampUtil;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.io.PrintWriter;
+
 
 /**
  * 登陆控制器
@@ -49,14 +50,23 @@ public class LoginController extends HttpServlet {
         String loginId = request.getParameter("loginId");
         String loginPwd = request.getParameter("loginPwd");
 
+        // 时间戳
+        String timeStamp =  TimeStampUtil.getTimeFormat();
+
+        // 创建一个session
+        HttpSession session = request.getSession();
+
         User user = userService.login(loginId, loginPwd);
         // UserDaoImpl userdaoimpl = new UserDaoImpl();
         // User user = userdaoimpl.login(loginId, loginPwd);
 
         // 登陆失败的处理
-        if (user == null) {
+        if (user.getUsername() == null) {
             request.getRequestDispatcher("/fail.jsp").forward(request, response);
         } else {
+            session.setAttribute("user", user);
+            session.setAttribute("timestamp", timeStamp);
+            // 请求转发
             request.getRequestDispatcher("/success.jsp").forward(request, response);
         }
     }
