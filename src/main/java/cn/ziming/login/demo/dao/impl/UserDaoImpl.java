@@ -10,7 +10,9 @@ import java.sql.ResultSet;
 
 public class UserDaoImpl implements UserDao {
 
-
+    /*
+    增添用户 可用于注册
+     */
     @Override
     public boolean createUser(User user) {
         try {
@@ -29,17 +31,21 @@ public class UserDaoImpl implements UserDao {
             return true;
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-
         }
         return false;
     }
 
+    /*
+    删除
+     */
     @Override
-    public boolean delectUser(User user) {
+    public boolean deleteUser(User user) {
         return false;
     }
 
+    /*
+    根据用户名和密码查找
+     */
     @Override
     public User findUserByIdAndPwd(User user) {
         try {
@@ -49,10 +55,11 @@ public class UserDaoImpl implements UserDao {
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setString(1, user.getLoginId());
             preparedStatement.setString(2, user.getLoginPwd());
+
             // 执行语句
             // preparedStatement.execute();
-            ResultSet resultSet= preparedStatement.executeQuery();
-            System.out.println(resultSet);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
             // 结果集
             // resultSet = preparedStatement.getResultSet();
             if (resultSet != null){
@@ -73,10 +80,11 @@ public class UserDaoImpl implements UserDao {
 
     }
 
+    /*
+    更新
+     */
     @Override
     public boolean upDataUser(User user) {
         return false;
     }
-
-
 }
