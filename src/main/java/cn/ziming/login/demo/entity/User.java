@@ -14,8 +14,15 @@ public class User implements Serializable {
     private String username;
     private String loginId;
     private String loginPwd;
-
+    /*
+    构造
+     */
     public User(String username, String loginId, String loginPwd) {
+        this.username = username;
+        this.loginId = loginId;
+        this.loginPwd = loginPwd;
+    }
+    public User(String loginId, String loginPwd) {
         this.username = username;
         this.loginId = loginId;
         this.loginPwd = loginPwd;
