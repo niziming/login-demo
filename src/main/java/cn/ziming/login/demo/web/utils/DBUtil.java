@@ -16,7 +16,7 @@ public class DBUtil {
             Properties properties = new Properties();
             properties.load(inputStream);
 
-            // 配置
+            // 配置properties键值对
             driver = properties.getProperty("driver");
             url = properties.getProperty("url");
             user = properties.getProperty("user");
@@ -29,8 +29,9 @@ public class DBUtil {
     public static Connection getConn() throws Exception{
         // 三大组件
         Connection connection = null;
-        Statement statement = null;
-        ResultSet resultSet = null;
+        // Statement statement = null;
+        // ResultSet resultSet = null;
+
         // 加载驱动
         Class.forName(driver);
 
