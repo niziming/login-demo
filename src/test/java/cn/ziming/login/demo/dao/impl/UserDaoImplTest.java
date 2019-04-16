@@ -8,7 +8,7 @@ public class UserDaoImplTest {
 
     @Test
     public void createUser() throws Exception {
-        User user = new User("liubin", "300000", "liubin");
+        User user = new User("liubin", "30000", "liubin");
         UserDao userDao = new UserDaoImpl();
         userDao.createUser(user);
     }
